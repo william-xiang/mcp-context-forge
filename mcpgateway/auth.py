@@ -106,7 +106,7 @@ def get_db() -> Generator[Session, Never, None]:
 
 
 async def get_current_user(
-    credentials: Optional[HTTPAuthorizationCredentials] = Depends(bearer_scheme),
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(security),
     db: Session = Depends(get_db),
     request: Optional[object] = None,
 ) -> EmailUser:
