@@ -385,7 +385,10 @@ services:
   # docker compose --profile with-fast-time up -d
   ###############################################################################
   fast_time_server:
-    image: ghcr.io/ibm/fast-time-server:latest
+    image: ${IMAGE_LOCAL:-fast-time-server:latest}
+    build:
+      context: ./mcp-servers/go/fast-time-server
+      dockerfile: Dockerfile     # Same one the Makefile builds
     restart: unless-stopped
     networks: [mcpnet]
     ports:
