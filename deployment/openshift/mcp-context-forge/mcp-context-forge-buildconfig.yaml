@@ -1,0 +1,22 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: mcp-context-forge
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'mcp-context-forge:latest'
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Containerfile
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/william-xiang/mcp-context-forge.git'
+      ref: rust_base_image
+    contextDir: /
+  triggers:
+    - type: ConfigChange

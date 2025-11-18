@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: test3
+
+sortOptions:
+  legacySortOptions:
+    orderFirst:
+    - Namespace
+    - ConfigMap
+    - ImageStream
+    - BuildConfig
+    - Deployment
+    - Service
+    - Route
+  order: legacy
+
+resources:
+- namespace.yaml
+- mcp-context-forge
