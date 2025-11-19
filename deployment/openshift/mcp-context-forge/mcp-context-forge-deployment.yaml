@@ -11,8 +11,7 @@ spec:
       app: mcp-context-forge
   template:
     spec:
-      securityContext:
-        runAsNonRoot: true
+      serviceAccountName: mcp-context-forge-sa
       containers:
       - name: gateway
         image: image-registry.openshift-image-registry.svc:5000/NAMESPACE_PLACEHOLDER/mcp-context-forge
@@ -34,4 +33,11 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 20
         securityContext:
-          allowPrivilegeEscalation: false
+          runAsUser: 0
+        volumeMounts:
+          - mountPath: /data
+            name: sqlite-data
+      volumes:
+        - name: sqlite-data
+          persistentVolumeClaim:
+            claimName: sqlite-data-pv-claim

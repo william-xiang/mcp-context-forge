@@ -8,6 +8,9 @@ labels:
     includeTemplates: true
 
 resources:
+- mcp-context-forge-serviceaccount.yaml
+- mcp-context-forge-rolebinding.yaml
+- mcp-context-forge-pvc.yaml
 - mcp-context-forge-imagestream.yaml
 - mcp-context-forge-buildconfig.yaml
 - mcp-context-forge-deployment.yaml

@@ -15,7 +15,7 @@ spec:
   source:
     type: Git
     git:
-      uri: 'https://github.com/william-xiang/mcp-context-forge.git'
+      uri: "https://github.com/william-xiang/mcp-context-forge.git"
       ref: rust_base_image
     contextDir: /
   triggers:

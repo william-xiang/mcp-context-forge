@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: mariadb
+      app: mariadb
+    includeTemplates: true
+
+resources:
+- mariadb-serviceaccount.yaml
+- mariadb-rolebinding.yaml
+- mariadb-pvc.yaml
+- mariadb-deployment.yaml
+- mariadb-service.yaml
+
+secretGenerator:
+- name: mariadb-secret
+  literals:
+  - MARIADB_DATABASE=mcp
+  - MARIADB_USER=mysql
+  - MARIADB_PASSWORD=changeme
+  - MARIADB_ROOT_PASSWORD=mysecretpassword
