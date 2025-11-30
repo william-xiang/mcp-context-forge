@@ -22,9 +22,6 @@ MCP Context Forge is deployed on OpenShift using a source-to-image (S2I) build s
     cd mcp-context-forge/deployment/openshift
     ```
 
-    > Note: Due to an image build issue for IBM Power, we use a fork of the original repo for now.
-    Once this [PR](https://github.com/IBM/mcp-context-forge/pull/1466) is merged, we can use the original repo again.
-
 2. **Set your namespace**
 
     Replace `<NAMESPACE_PLACEHOLDER>` in the root `kustomization.yaml` with your actual OpenShift namespace.
@@ -60,12 +57,6 @@ MCP Context Forge is deployed on OpenShift using a source-to-image (S2I) build s
    # Trigger a new build using the source from local
    oc start-build mcp-context-forge --from-dir=.
    ```
-
-## Notes
-
-The build config specifies to use the branch `rust_base_image` of the repo `https://github.com/william-xiang/mcp-context-forge.git` in `mcp-context-forge/mcp-context-forge-buildconfig.yaml`. This branch contains the fix for the build issue on Power. You can change these two values to use another repo or branch.
-After changes are made in this file, you can run the command `kustomize build . | oc apply -f -` to apply the changes. Then a new build will be triggered and eventually the application will be redeployed using the new image.
-
 
 ## Troubleshooting
 
